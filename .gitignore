@@ -1,0 +1,96 @@
+## Build results
+bin/
+obj/
+out/
+
+## Rider
+.idea/
+*.sln.iml
+
+## VS Code
+.vscode/
+.vscode/*.code-workspace
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Logs
+*.log
+*.tlog
+
+## Visual Studio
+.vs/
+Generated_Code/
+TestResults/
+*.cache
+*.dbmdl
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+## ASP.NET
+appsettings.*.json
+secrets.json
+
+## EF Core Migrations (if using snapshot-based workflow)
+Migrations/*.Designer.cs
+Migrations/*Snapshot.cs
+
+## Docker
+**/docker-compose.override.yml
+**/docker-compose.*.yml
+**/Dockerfile.*
+.dockerignore
+
+## node (if using frontend in same repo)
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+
+## Publish outputs
+publish/
+*.publish.xml
+*.db
+
+## Coverage & Analysis
+coverage/
+*.coverage
+*.coveragexml
+*.code-workspace
+*.sonarqube
+*.lcov
+
+## Others
+*.DS_Store
+Thumbs.db
+.env
+.env.*
+*.sqlite
+*.sqlite3
+
+## JetBrains Rider
+.idea/
+*.dotCover
+
+## Temporary files
+~$*
+*.tmp
+*.bak
+
+## Tests
+test-output/
+test-results/
+*.trx
+
+## Ignore generated swagger JSON/YAML if saved
+swagger.json
+swagger.yaml
