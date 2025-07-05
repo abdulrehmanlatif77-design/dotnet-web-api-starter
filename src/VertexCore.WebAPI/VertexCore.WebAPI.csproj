@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\VertexCore.Infrastructure\VertexCore.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
