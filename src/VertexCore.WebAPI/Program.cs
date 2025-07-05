@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(); // Add services for dependency injection
 builder.Services.AddOpenApi(); // For OpenAPI/Swagger support
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 // Register the infrastructure services, including Identity and Entity Framework Core
 builder.Services.AddInfrastructureServices(builder.Configuration);
@@ -16,7 +18,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VertexCore.WebAPI v1"));
 }
 
 app.UseHttpsRedirection();
