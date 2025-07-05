@@ -1,10 +1,15 @@
+using VertexCore.Infrastructure.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddControllers(); // Add services for dependency injection
+builder.Services.AddOpenApi(); // For OpenAPI/Swagger support
+
+// Register the infrastructure services, including Identity and Entity Framework Core
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
@@ -16,6 +21,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); // Enable authentication middleware
 app.UseAuthorization();
 
 app.MapControllers();
