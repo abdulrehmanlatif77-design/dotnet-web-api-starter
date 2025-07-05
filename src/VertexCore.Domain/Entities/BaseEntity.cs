@@ -7,7 +7,7 @@ namespace VertexCore.Domain.Entities
 {
     public class BaseEntity<T>
     {
-        public T Id { get; set; } // Unique identifier for the entity
+        public required T Id { get; set; } // Unique identifier for the entity
         public DateTime CreatedAt { get; set; } // Timestamp for when the entity was created
         public DateTime? UpdatedAt { get; set; } // Timestamp for when the entity was last updated
     }
