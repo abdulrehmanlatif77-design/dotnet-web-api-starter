@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VertexCore.Infrastructure\VertexCore.Infrastructure.csproj" />
+    <ProjectReference Include="..\VertexCore.Application\VertexCore.Application.csproj" />
   </ItemGroup>
 
 </Project>

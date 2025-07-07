@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace VertexCore.Domain.Entities
 {
-    public class BaseEntity<T>
+    /**
+     * BaseEntity class serves as a base class for all entities in the domain.
+     * It provides common properties such as Id, CreatedAt, and UpdatedAt.
+     * This class can be extended by other entities to inherit these properties.
+     **/
+    public abstract class BaseEntity<T>
     {
-        public required T Id { get; set; } // Unique identifier for the entity
+        public required T Id { get; set; } // Unique identifier for the entity.
         public DateTime CreatedAt { get; set; } // Timestamp for when the entity was created
         public DateTime? UpdatedAt { get; set; } // Timestamp for when the entity was last updated
     }
