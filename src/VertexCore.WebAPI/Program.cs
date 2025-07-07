@@ -1,30 +1,39 @@
+using Serilog;
 using VertexCore.Infrastructure.DependencyInjection;
+using VertexCore.WebAPI.Logger;
+using VertexCore.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configure logging
+SerilogConfigurator.Configure();
+builder.Host.UseSerilog();
 
-builder.Services.AddControllers(); // Add services for dependency injection
-builder.Services.AddOpenApi(); // For OpenAPI/Swagger support
+// Add services
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register the infrastructure services, including Identity and Entity Framework Core
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+// Use exception handling first
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage(); // optional
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VertexCore.WebAPI v1"));
 }
+else
+{
+    app.UseHttpsRedirection(); // production only
+}
 
-app.UseAuthentication(); // Enable authentication middleware
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
