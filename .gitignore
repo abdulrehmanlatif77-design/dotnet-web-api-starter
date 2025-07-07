@@ -94,3 +94,25 @@ test-results/
 ## Ignore generated swagger JSON/YAML if saved
 swagger.json
 swagger.yaml
+
+## Ignore generated code files
+Generated_Code/
+## Ignore local settings files
+local.settings.json
+## Ignore local configuration files
+local.config.json
+## Ignore local database files
+local.db
+## Ignore local cache files
+local.cache
+## Ignore local secrets files
+local.secrets.json
+## Ignore local environment files
+local.env
+## Ignore local build files
+local.build
+## Ignore local publish files
+local.publish
+## Ignore local logs
+local.logs
+Logs/
