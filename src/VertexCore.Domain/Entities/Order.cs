@@ -14,5 +14,7 @@ namespace VertexCore.Domain.Entities
         public OrderStatus Status { get; set; } // Current status of the order (e.g., Pending, Completed, Cancelled)
         public DateTime OrderDate { get; set; } // Date when the order was placed
         public List<OrderItem> OrderItems { get; set; } = []; // List of products in the order
+
+        
     }
 }

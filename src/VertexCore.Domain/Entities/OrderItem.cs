@@ -13,7 +13,7 @@ namespace VertexCore.Domain.Entities
         public decimal Price { get; set; } // Price of the product at the time of order
 
         // Navigation properties
-        public virtual required Order Order { get; set; } // Navigation property to the order
-        public virtual required Product Product { get; set; } // Navigation property to the product
+        public required Order Order { get; set; } // Navigation property to the order
+        public required Product Product { get; set; } // Navigation property to the product
     }
 }
