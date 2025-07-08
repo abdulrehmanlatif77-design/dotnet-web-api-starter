@@ -46,7 +46,7 @@ namespace VertexCore.WebAPI.Middleware
             }
         }
 
-        private (Result result, int statusCode) MapExceptionToResult(Exception ex)
+        private static (Result result, int statusCode) MapExceptionToResult(Exception ex)
         {
             return ex switch
             {
