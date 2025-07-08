@@ -13,9 +13,8 @@ namespace VertexCore.Infrastructure.Identity
     public class AppUser : IdentityUser
     {
         // You can add additional properties here if needed
-        // For example:
-        // public string FirstName { get; set; }
-        // public string LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
 
     }
 }

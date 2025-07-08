@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using VertexCore.Domain.Entities;
 
 namespace VertexCore.Infrastructure.Identity
 {
@@ -11,5 +12,21 @@ namespace VertexCore.Infrastructure.Identity
      **/
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<AppUser>(options)
     {
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
+        /**
+         * This method is used to configure the model for the identity context.
+         * It can be overridden to customize the model, such as adding custom tables or relationships.
+         **/
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            // Apply configurations for identity entities
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        }
+
     }
 }
