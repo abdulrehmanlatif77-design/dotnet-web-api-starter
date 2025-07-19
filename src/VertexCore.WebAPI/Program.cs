@@ -1,7 +1,6 @@
 using Serilog;
-using VertexCore.Application.DependencyInjection;
-using VertexCore.Infrastructure.DependencyInjection;
 using VertexCore.Infrastructure.Identity.Seed;
+using VertexCore.WebAPI.DependencyInjection;
 using VertexCore.WebAPI.Logger;
 using VertexCore.WebAPI.Middleware;
 
@@ -16,38 +15,40 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Add API versioning
-builder.Services.AddApplicationServices();
-builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
+// Custom Dependency Injections
+builder.Services.AddCustomDbContext(builder.Configuration);
+builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
+builder.Services.AddCustomApiVersioning();
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
-// Use exception handling first
+// Exception middleware
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // optional
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VertexCore.WebAPI v1"));
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "VertexCore API V1");
+    });
 }
 else
 {
-    app.UseHttpsRedirection(); // production only
+    app.UseHttpsRedirection();
 }
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 // Seed identity data
 using (var scope = app.Services.CreateScope())
 {
-    // Ensure the database is created and seed initial data
-    // If you don't have a database context yet, please comment this out in order to avoid errors
     var services = scope.ServiceProvider;
     await IdentitySeeder.SeedAsync(services);
 }
