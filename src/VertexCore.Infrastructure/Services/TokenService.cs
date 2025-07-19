@@ -6,6 +6,7 @@ using VertexCore.Domain.DTOs;
 using VertexCore.Domain.Interfaces.Services;
 using VertexCore.Infrastructure.Interfaces;
 using VertexCore.Infrastructure.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace VertexCore.Infrastructure.Services
 {
@@ -22,12 +23,26 @@ namespace VertexCore.Infrastructure.Services
         // The JWTSettings instance holds the configuration settings for JWT,
         // such as secret key, issuer, audience, and expiration time.
         private readonly JWTSettings _jwtSettings;
-        public TokenService(JWTSettings jwtSettings)
+        public TokenService(IOptions<JWTSettings> jwtSettings)
         {
-            _jwtSettings = jwtSettings;
+            _jwtSettings = jwtSettings.Value;
         }
         public string GenerateToken(TokenUserDto userDto, int? expirationMinutes = null)
         {
+            // Validate that the userDto is not null
+            // This ensures that the method has valid user information to create a token
+            if (userDto == null)
+            {
+                throw new ArgumentNullException(nameof(userDto), "User DTO cannot be null");
+            }
+
+            // Validate that the UserId is not missing or empty
+            // This ensures that the token can be associated with a specific user
+            if (string.IsNullOrEmpty(userDto.UserId))
+            {
+                throw new ArgumentException("User ID cannot be null or empty", nameof(userDto));
+            }
+
             // Check if the user has any roles assigned
             var roles = userDto.Roles?.Any() ?? false ? string.Join(",", userDto.Roles) : "user";
 
@@ -35,10 +50,10 @@ namespace VertexCore.Infrastructure.Services
             // The claims include the user's ID, username, email, roles, and a unique identifier
             var claims = new[]
             {
-            new Claim(JwtRegisteredClaimNames.Sub, userDto.UserId.ToString()),
+            new Claim(JwtRegisteredClaimNames.Sub, userDto.UserId),
             new Claim(ClaimTypes.Name, userDto.Username ?? string.Empty),
             new Claim(JwtRegisteredClaimNames.Email, userDto.Email ?? string.Empty),
-            new Claim(ClaimTypes.Role, roles),
+            new Claim(ClaimTypes.Role, roles ?? string.Empty),
             new Claim(JwtRegisteredClaimNames.Jti, $"{userDto.UserId}-{Guid.NewGuid()}") // Unique identifier for the token associated with the user
             };
 
@@ -123,7 +138,7 @@ namespace VertexCore.Infrastructure.Services
             var claimsPrincipal = GetClaimsPrincipalFromToken(token);
             return claimsPrincipal?.FindFirst(ClaimTypes.Email)?.Value;
         }
-        
+
         public IList<string>? GetRolesFromToken(string token)
         {
             var claimsPrincipal = GetClaimsPrincipalFromToken(token);
