@@ -2,8 +2,6 @@
 
 <div align="center">
   <img src="assets/vertexcore-icon.png" alt="VertexCore Logo" width="320" height="180"/>
-  
-  <img src="https://img.shields.io/badge/Clean%20Architecture-Template-blue?style=for-the-badge&logo=dotnet&logoColor=white" alt="Clean Architecture Banner" width="400"/>
 </div>
 
 [![.NET](https://img.shields.io/badge/.NET-9.0-purple)](https://dotnet.microsoft.com/)
