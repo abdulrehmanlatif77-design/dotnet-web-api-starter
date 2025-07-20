@@ -3,17 +3,17 @@
 <div align="center">
   <img src="assets/vertexcore-icon.png" alt="VertexCore Logo" width="320" height="180"/>
   
-  ![Clean Architecture Banner](https://via.placeholder.com/800x300/2E3440/88C0D0?text=Clean+Architecture+Template)
+  <img src="https://img.shields.io/badge/Clean%20Architecture-Template-blue?style=for-the-badge&logo=dotnet&logoColor=white" alt="Clean Architecture Banner" width="400"/>
 </div>
 
 [![.NET](https://img.shields.io/badge/.NET-9.0-purple)](https://dotnet.microsoft.com/)
 [![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-9.0-blue)](https://docs.microsoft.com/en-us/aspnet/core/)
-[![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core%208.0-green)](https://docs.microsoft.com/en-us/ef/)
+[![Entity Framework](https://img.shields.io/badge/Entity%20Framework-Core%209.0-green)](https://docs.microsoft.com/en-us/ef/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ## 📋 Overview
 
-**VertexCore** is a production-ready ASP.NET Core Web API template built with **Clean Architecture** principles. It provides a solid foundation for building scalable, maintainable, and testable web APIs with modern development practices.
+**VertexCore** is a production-ready ASP.NET Core Web API template built with **Clean Architecture** principles and **.NET 9**. It provides a solid foundation for building scalable, maintainable, and testable web APIs with modern development practices.
 
 ### 🎯 Key Features
 
@@ -28,6 +28,16 @@
 - ✅ **Serilog Logging** - Structured logging to file and console
 - ✅ **Exception Handling** - Global exception handling middleware
 - ✅ **Dependency Injection** - Built-in IoC container configuration
+- ✅ **.NET 9** - Latest .NET framework with enhanced performance and features
+
+### 🆕 .NET 9 Features
+
+This template leverages the latest .NET 9 features including:
+- 🚀 **Enhanced Performance** - Improved runtime performance and reduced memory usage
+- 🔧 **C# 13 Support** - Latest C# language features and improvements
+- 📦 **NuGet Package Improvements** - Better package management and security
+- 🌐 **ASP.NET Core 9.0** - Latest web framework with new features and optimizations
+- 🗃️ **Entity Framework Core 9.0** - Enhanced ORM capabilities and performance
 
 ## 🏗️ Architecture
 
@@ -225,8 +235,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 | Technology | Purpose |
 |-----------|---------|
-| **ASP.NET Core 8.0** | Web API framework |
-| **Entity Framework Core** | Object-Relational Mapping (ORM) |
+| **ASP.NET Core 9.0** | Web API framework |
+| **Entity Framework Core 9.0** | Object-Relational Mapping (ORM) |
 | **ASP.NET Core Identity** | Authentication & user management |
 | **MediatR** | CQRS pattern implementation |
 | **FluentValidation** | Input validation |
@@ -315,10 +325,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Learn more about this project and Clean Architecture implementation:
 
 ### 🇺🇸 English Articles
-- [Building Clean Architecture with ASP.NET Core - Complete Guide](https://medium.com/@freecnsz/clean-architecture-aspnet-core-guide)
+- [ASP.NET Core Web API with Clean Architecture: A Practical Guide for Beginners | EN](https://medium.com/@freecnsz/aspnet-core-web-api-with-clean-architecture-a-practical-guide-en-d499f20ba9ff)
 
 ### 🇹🇷 Türkçe Makaleler  
-- [ASP.NET Core ile Clean Architecture - Kapsamlı Rehber](https://medium.com/@freecnsz/
+- [Clean Architecture ile ASP.NET Core Web API : Yeni Başlayanlar İçin Pratik Rehber | TR](https://freecnsz.medium.com/clean-architecture-ile-aspnet-webapi-baslangic-rehberi-2fe7254bf3ca)
 
 *These articles provide in-depth explanations of the concepts and patterns used in this template.*  
 *Bu makaleler, bu template'de kullanılan konsept ve pattern'ler hakkında detaylı açıklamalar sağlar.
