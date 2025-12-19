@@ -32,5 +32,13 @@ namespace VertexCore.WebAPI.Controllers.Product
             var result = await _mediator.Send(command);
             return result.ToActionResult();
         }
+        [HttpDelete("delete")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.ToActionResult();
+
+        }
     }
 }

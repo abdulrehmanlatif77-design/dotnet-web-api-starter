@@ -16,7 +16,7 @@ namespace VertexCore.Application.Validators.Product
                 .WithMessage("Product name cannot exceed 100 characters.");
 
             RuleFor(x => x.Description)
-                .MinimumLength(500)
+                .MaximumLength(500)
                 .WithErrorCode("VALIDATION_ERROR")
                 .WithMessage("Product description cannot exceed 500 characters.");
             RuleFor(x => x.Price)
