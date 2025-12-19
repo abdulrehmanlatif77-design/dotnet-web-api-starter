@@ -1,12 +1,11 @@
-using System.Text;
 using Asp.Versioning;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using VertexCore.Application.Commands.Auth;
 using VertexCore.Application.Common.Behaviors;
 using VertexCore.Application.Validators.Auth;
@@ -55,7 +54,7 @@ public static class APIServiceRegistration
 
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
-
+        services.AddScoped<IProductService, ProductService>();
         return services;
     }
 

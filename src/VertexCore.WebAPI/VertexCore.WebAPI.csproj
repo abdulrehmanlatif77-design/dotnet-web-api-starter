@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\VertexCore.Infrastructure\VertexCore.Infrastructure.csproj" />
     <ProjectReference Include="..\VertexCore.Application\VertexCore.Application.csproj" />
   </ItemGroup>

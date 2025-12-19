@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-
 namespace VertexCore.Domain.Entities
 {
     public class Product : BaseEntity<Guid>
@@ -13,7 +7,5 @@ namespace VertexCore.Domain.Entities
         public decimal Price { get; set; } // Price of the product
         public bool IsActive { get; set; } // Indicates if the product is active, true if available for sale
 
-        // Navigation property for OrderItems
-        public List<OrderItem> OrderItems { get; set; } = [];
     }
 }

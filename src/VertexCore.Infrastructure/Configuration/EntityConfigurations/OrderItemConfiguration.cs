@@ -38,10 +38,6 @@ namespace VertexCore.Infrastructure.Configuration.EntityConfigurations
                    .OnDelete(DeleteBehavior.Cascade);
 
             // If Product is deleted, restrict to avoid orphan OrderItems
-            builder.HasOne(oi => oi.Product)
-                   .WithMany(p => p.OrderItems)
-                   .HasForeignKey(oi => oi.ProductId)
-                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
