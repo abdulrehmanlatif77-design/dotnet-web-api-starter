@@ -25,5 +25,12 @@ namespace VertexCore.WebAPI.Controllers.Product
             var result = await _mediator.Send(command);
             return result.ToActionResult();
         }
+        [HttpPut("update")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.ToActionResult();
+        }
     }
 }
