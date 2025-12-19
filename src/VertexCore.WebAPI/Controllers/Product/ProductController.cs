@@ -40,5 +40,22 @@ namespace VertexCore.WebAPI.Controllers.Product
             return result.ToActionResult();
 
         }
+        [HttpGet("getproducts")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var command = new Application.Queries.Product.GetAllProductsCommand();
+            var result = await _mediator.Send(command);
+            return result.ToActionResult();
+        }
+        [HttpGet("getproductbyid/{id}")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> GetProductById([FromRoute] Guid id)
+        {
+            var command = new Application.Queries.Product.GetProductByIdProductCommand { Id = id };
+            var result = await _mediator.Send(command);
+            return result.ToActionResult();
+
+        }
     }
 }
