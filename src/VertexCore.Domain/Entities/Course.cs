@@ -10,9 +10,6 @@ namespace VertexCore.Domain.Entities
         public required string Title { get; set; }
         public int Credits { get; set; }
 
-        // Foreign key referencing Department
-        public Guid DeptId { get; set; }
-
         // Navigation property (optional)
         public Department? Department { get; set; }
     }

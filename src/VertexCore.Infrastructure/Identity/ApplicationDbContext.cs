@@ -14,8 +14,17 @@ namespace VertexCore.Infrastructure.Identity
     {
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Student> Students { get; set; }
+
+        public DbSet<Instructor> Instructors { get; set; }
+
+
+        public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Course> Courses { get; set; }
+
+        public DbSet<Section> Sections { get; set; }
+
 
         /**
          * This method is used to configure the model for the identity context.
