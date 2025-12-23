@@ -15,5 +15,7 @@ namespace VertexCore.Domain.Entities
         // Foreign key referencing the Instructor who is the head of the department
         public Guid InstructorId { get; set; }
 
+        // Navigation property to Instructor (Optional)
+        public Instructor? Instructor { get; set; }
     }
 }
