@@ -1,6 +1,6 @@
+using System;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
 using VertexCore.Domain.Entities;
 
 namespace VertexCore.Infrastructure.Identity
@@ -11,8 +11,12 @@ namespace VertexCore.Infrastructure.Identity
      * This context is used to interact with the database for user management,
      * roles, and other identity-related operations.
      **/
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<AppUser>(options)
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Student> Students { get; set; }
@@ -171,7 +175,9 @@ namespace VertexCore.Infrastructure.Identity
                     RoomNumber = "101",
                     MeetingDay = new DateTime(2025, 12, 23),
                     MeetingTime = new TimeSpan(9, 0, 0),
-                    CreatedAt = createdAt
+                    CreatedAt = createdAt,
+                    CourseId = course1Id,
+                    InstructorId = instr1Id
                 },
                 new Section
                 {
@@ -182,7 +188,9 @@ namespace VertexCore.Infrastructure.Identity
                     RoomNumber = "202",
                     MeetingDay = new DateTime(2025, 12, 23),
                     MeetingTime = new TimeSpan(11, 0, 0),
-                    CreatedAt = createdAt
+                    CreatedAt = createdAt,
+                    CourseId = course2Id,
+                    InstructorId = instr2Id
                 }
             );
         }

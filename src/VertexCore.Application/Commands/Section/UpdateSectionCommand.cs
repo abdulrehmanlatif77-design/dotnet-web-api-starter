@@ -16,6 +16,10 @@ namespace VertexCore.Application.Commands.Section
         public string? RoomNumber { get; set; }
         public DateTime MeetingDay { get; set; }
         public TimeSpan MeetingTime { get; set; }
+
+        // allow updating the associated course and instructor
+        public Guid CourseId { get; set; }
+        public Guid InstructorId { get; set; }
     }
 
     public class UpdateSectionCommandHandler : IRequestHandler<UpdateSectionCommand, Result>
@@ -39,7 +43,9 @@ namespace VertexCore.Application.Commands.Section
                     Year = request.Year,
                     RoomNumber = request.RoomNumber,
                     MeetingDay = request.MeetingDay,
-                    MeetingTime = request.MeetingTime
+                    MeetingTime = request.MeetingTime,
+                    CourseId = request.CourseId,
+                    InstructorId = request.InstructorId
                 };
 
                 await _sectionService.UpdateAsync(section, cancellationToken);

@@ -16,12 +16,20 @@ namespace VertexCore.Infrastructure.Services
 
         public async Task<IEnumerable<Section>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.Sections.AsNoTracking().ToListAsync(cancellationToken);
+            return await _context.Sections
+                .Include(s => s.Course)
+                .Include(s => s.Instructor)
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
         }
 
         public async Task<Section?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Sections.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
+            return await _context.Sections
+                .Include(s => s.Course)
+                .Include(s => s.Instructor)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.Id == id, cancellationToken);
         }
 
         public async Task<Section> CreateAsync(Section section, CancellationToken cancellationToken = default)

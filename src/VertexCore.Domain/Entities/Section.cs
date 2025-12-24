@@ -19,5 +19,14 @@ namespace VertexCore.Domain.Entities
         // Time of the meeting
         public TimeSpan MeetingTime { get; set; }
 
+        public required Guid CourseId { get; set; }
+
+        // Navigation to Course is not required for object initialization (set by EF)
+        public Course? Course { get; set; }
+
+        public required Guid InstructorId { get; set; }
+
+        // Navigation to Instructor is not required for object initialization (set by EF)
+        public Instructor? Instructor { get; set; }
     }
 }

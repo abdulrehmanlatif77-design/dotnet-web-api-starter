@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using VertexCore.Application.Common.Models;
 using VertexCore.Infrastructure.Interfaces.Services;
@@ -15,6 +12,10 @@ namespace VertexCore.Application.Commands.Section
         public string? RoomNumber { get; set; }
         public DateTime MeetingDay { get; set; }
         public TimeSpan MeetingTime { get; set; }
+        public Guid CourseId { get; set; }
+
+        public Guid InstructorId { get; set; }
+
     }
 
     public class CreateSectionCommandHandler : IRequestHandler<CreateSectionCommand, Result>
@@ -38,7 +39,9 @@ namespace VertexCore.Application.Commands.Section
                     Year = request.Year,
                     RoomNumber = request.RoomNumber,
                     MeetingDay = request.MeetingDay,
-                    MeetingTime = request.MeetingTime
+                    MeetingTime = request.MeetingTime,
+                    CourseId = request.CourseId,
+                    InstructorId = request.InstructorId
                 };
 
                 var result = await _sectionService.CreateAsync(section, cancellationToken);
