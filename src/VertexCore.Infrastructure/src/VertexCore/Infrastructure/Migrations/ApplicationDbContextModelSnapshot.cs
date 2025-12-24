@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VertexCore.Infrastructure.Identity;
 
@@ -12,11 +11,9 @@ using VertexCore.Infrastructure.Identity;
 namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251224065114_SeedSampleData")]
-    partial class SeedSampleData
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +188,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("55555555-5555-5555-5555-555555555555"),
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Credits = 3,
                             DepartmentId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Title = "Intro to Programming"
@@ -199,7 +196,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("66666666-6666-6666-6666-666666666666"),
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Credits = 4,
                             DepartmentId = new Guid("22222222-2222-2222-2222-222222222222"),
                             Title = "Circuits 101"
@@ -213,6 +210,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Budget")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -246,7 +244,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
                             Budget = 100000m,
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Location = "Building A",
                             Name = "Computer Science",
                             PhoneNumber = "555-0101"
@@ -255,7 +253,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             Budget = 150000m,
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Location = "Building B",
                             Name = "Electrical Engineering",
                             PhoneNumber = "555-0202"
@@ -320,7 +318,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         {
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
                             Address = "123 Main St",
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EmailAddress = "alice.anderson@example.com",
                             FirstName = "Alice",
                             HireDate = new DateTime(2015, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -334,7 +332,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         {
                             Id = new Guid("44444444-4444-4444-4444-444444444444"),
                             Address = "456 Elm St",
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EmailAddress = "bob.brown@example.com",
                             FirstName = "Bob",
                             HireDate = new DateTime(2018, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -384,13 +382,13 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CourseId")
+                    b.Property<Guid>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("InstructorId")
+                    b.Property<Guid>("InstructorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("MeetingDay")
@@ -431,8 +429,10 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("99999999-9999-9999-9999-999999999999"),
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
-                            MeetingDay = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CourseId = new Guid("55555555-5555-5555-5555-555555555555"),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstructorId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            MeetingDay = new DateTime(2025, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MeetingTime = new TimeSpan(0, 9, 0, 0, 0),
                             RoomNumber = "101",
                             SectionNumber = "S01",
@@ -442,8 +442,10 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
-                            MeetingDay = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CourseId = new Guid("66666666-6666-6666-6666-666666666666"),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstructorId = new Guid("44444444-4444-4444-4444-444444444444"),
+                            MeetingDay = new DateTime(2025, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MeetingTime = new TimeSpan(0, 11, 0, 0, 0),
                             RoomNumber = "202",
                             SectionNumber = "S02",
@@ -517,7 +519,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         {
                             Id = new Guid("77777777-7777-7777-7777-777777777777"),
                             Address = "789 Oak St",
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateOfBirth = new DateTime(2000, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Degree = 0,
                             EmailAddress = "charlie.chaplin@example.com",
@@ -533,7 +535,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
                         {
                             Id = new Guid("88888888-8888-8888-8888-888888888888"),
                             Address = "321 Pine St",
-                            CreatedAt = new DateTime(2025, 12, 24, 6, 51, 13, 593, DateTimeKind.Utc).AddTicks(8186),
+                            CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateOfBirth = new DateTime(2001, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Degree = 1,
                             EmailAddress = "diana.dawson@example.com",
@@ -673,7 +675,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
             modelBuilder.Entity("VertexCore.Domain.Entities.Course", b =>
                 {
                     b.HasOne("VertexCore.Domain.Entities.Department", "Department")
-                        .WithMany()
+                        .WithMany("Courses")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -683,7 +685,7 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
             modelBuilder.Entity("VertexCore.Domain.Entities.Department", b =>
                 {
                     b.HasOne("VertexCore.Domain.Entities.Instructor", "Instructor")
-                        .WithMany()
+                        .WithMany("Departments")
                         .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -692,19 +694,33 @@ namespace VertexCore.Infrastructure.src.VertexCore.Infrastructure.Migrations
 
             modelBuilder.Entity("VertexCore.Domain.Entities.Section", b =>
                 {
-                    b.HasOne("VertexCore.Domain.Entities.Course", "Name")
+                    b.HasOne("VertexCore.Domain.Entities.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VertexCore.Domain.Entities.Instructor", "Instructor")
-                        .WithMany()
+                        .WithMany("Sections")
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
 
                     b.Navigation("Instructor");
+                });
 
-                    b.Navigation("Name");
+            modelBuilder.Entity("VertexCore.Domain.Entities.Department", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("VertexCore.Domain.Entities.Instructor", b =>
+                {
+                    b.Navigation("Departments");
+
+                    b.Navigation("Sections");
                 });
 #pragma warning restore 612, 618
         }
