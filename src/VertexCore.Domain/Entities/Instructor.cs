@@ -20,5 +20,11 @@ namespace VertexCore.Domain.Entities
         public string? Position { get; set; }
 
         public DateTime HireDate { get; set; }
+
+        // Navigation: sections taught by this instructor
+        public ICollection<Section>? Sections { get; set; }
+
+        // Departments they may head (inverse navigation)
+        public ICollection<Department>? Departments { get; set; }
     }
 }

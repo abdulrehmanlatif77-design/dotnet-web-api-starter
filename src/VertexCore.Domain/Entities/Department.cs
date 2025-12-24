@@ -12,7 +12,12 @@ namespace VertexCore.Domain.Entities
         public string? PhoneNumber { get; set; }
         public decimal Budget { get; set; }
 
+        // Foreign key to Instructor (e.g., department head)
+        public Guid? InstructorId { get; set; }
         // Navigation property to Instructor (Optional)
         public Instructor? Instructor { get; set; }
+
+        // Courses under this department
+        public ICollection<Course>? Courses { get; set; }
     }
 }

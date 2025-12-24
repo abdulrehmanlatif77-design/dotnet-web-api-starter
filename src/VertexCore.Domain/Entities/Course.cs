@@ -10,7 +10,12 @@ namespace VertexCore.Domain.Entities
         public required string Title { get; set; }
         public int Credits { get; set; }
 
-        // Navigation property (optional)
+        // Foreign key to Department
+        public Guid? DepartmentId { get; set; }
+        // Navigation property
         public Department? Department { get; set; }
+
+        // Sections for this course
+        public ICollection<Section>? Sections { get; set; }
     }
 }

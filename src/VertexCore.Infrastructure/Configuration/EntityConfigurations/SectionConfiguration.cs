@@ -27,15 +27,24 @@ namespace VertexCore.Infrastructure.Configuration.EntityConfigurations
             builder.Property(s => s.MeetingTime)
                    .IsRequired();
             // Configure optional relationship to Course using a shadow FK
-            builder.HasOne(s => s.Name)
-                   .WithMany()
+            builder.HasOne(s => s.Course)
+                   .WithMany(c => c.Sections)
                    .HasForeignKey("CourseId")
                    .OnDelete(DeleteBehavior.SetNull);
             // Configure optional relationship to Instructor using a shadow FK
             builder.HasOne(s => s.Instructor)
-                   .WithMany()
+                   .WithMany(i => i.Sections)
                    .HasForeignKey("InstructorId")
                    .OnDelete(DeleteBehavior.SetNull);
+
+            // Configure many-to-many between Section and Student via join table
+            builder.HasMany(s => s.Students)
+                   .WithMany(st => st.Sections)
+                   .UsingEntity<Dictionary<string, object>>(
+                        "SectionStudent",
+                        j => j.HasOne<Student>().WithMany().HasForeignKey("StudentId").OnDelete(DeleteBehavior.Cascade),
+                        j => j.HasOne<Section>().WithMany().HasForeignKey("SectionId").OnDelete(DeleteBehavior.Cascade)
+                   );
         }
     }
 }
