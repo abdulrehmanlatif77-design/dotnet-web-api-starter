@@ -55,6 +55,11 @@ public static class APIServiceRegistration
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IStudentService, StudentService>();
+        services.AddScoped<ICourseService, CourseService>();
+        services.AddScoped<IDepartmentService, DepartmentService>();
+        services.AddScoped<IInstructorService, InstructorService>();
+        services.AddScoped<ISectionService, SectionService>();
         return services;
     }
 
