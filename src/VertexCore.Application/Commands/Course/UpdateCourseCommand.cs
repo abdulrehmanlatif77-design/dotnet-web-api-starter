@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using VertexCore.Application.Common.Models;
 using VertexCore.Infrastructure.Interfaces.Services;
@@ -12,6 +9,7 @@ namespace VertexCore.Application.Commands.Course
         public Guid Id { get; set; }
         public required string Title { get; set; }
         public int Credits { get; set; }
+        public Guid? DepartmentId { get; set; }
     }
 
     public class UpdateCourseCommandHandler : IRequestHandler<UpdateCourseCommand, Result>
@@ -31,7 +29,10 @@ namespace VertexCore.Application.Commands.Course
                 {
                     Id = request.Id,
                     Title = request.Title,
-                    Credits = request.Credits
+                    Credits = request.Credits,
+                    DepartmentId = request.DepartmentId,
+                    UpdatedAt = DateTime.Now
+
                 };
 
                 await _courseService.UpdateAsync(course, cancellationToken);

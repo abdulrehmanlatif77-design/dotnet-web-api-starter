@@ -11,6 +11,8 @@ namespace VertexCore.Application.Commands.Course
     {
         public required string Title { get; set; }
         public int Credits { get; set; }
+        // Optional department assignment when creating a course
+        public Guid? DepartmentId { get; set; }
     }
 
     public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, Result>
@@ -30,7 +32,8 @@ namespace VertexCore.Application.Commands.Course
                 {
                     Id = Guid.NewGuid(),
                     Title = request.Title,
-                    Credits = request.Credits
+                    Credits = request.Credits,
+                    DepartmentId = request.DepartmentId
                 };
 
                 var result = await _courseService.CreateAsync(course, cancellationToken);
