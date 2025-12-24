@@ -59,5 +59,13 @@ namespace VertexCore.WebAPI.Controllers.Department
             var result = await _mediator.Send(command);
             return Ok(result);
         }
+
+        [HttpPost("assign-instructor")]
+        [MapToApiVersion("1.0")]
+        public async Task<IActionResult> AssignInstructor([FromBody] AssignInstructorCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return result.ToActionResult();
+        }
     }
 }

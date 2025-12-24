@@ -14,5 +14,6 @@ namespace VertexCore.Infrastructure.Interfaces.Services
         Task UpdateAsync(Department department, CancellationToken cancellationToken = default);
         Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
         Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default);
+        Task AssignInstructorAsync(Guid departmentId, Guid instructorId, CancellationToken cancellationToken = default);
     }
 }

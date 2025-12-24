@@ -58,5 +58,21 @@ namespace VertexCore.Infrastructure.Services
         {
             return await _context.Departments.AnyAsync(d => d.Id == id, cancellationToken);
         }
+
+        public async Task AssignInstructorAsync(Guid departmentId, Guid instructorId, CancellationToken cancellationToken = default)
+        {
+            var department = await _context.Departments.FindAsync(new object[] { departmentId }, cancellationToken);
+            if (department == null)
+                throw new KeyNotFoundException($"Department with id {departmentId} not found.");
+
+            var instructor = await _context.Instructors.FindAsync(new object[] { instructorId }, cancellationToken);
+            if (instructor == null)
+                throw new KeyNotFoundException($"Instructor with id {instructorId} not found.");
+
+            department.InstructorId = instructorId;
+            department.Instructor = instructor;
+
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
