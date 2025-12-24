@@ -17,10 +17,10 @@ namespace VertexCore.Infrastructure.Configuration.EntityConfigurations
             builder.Property(d => d.Budget)
                    .HasPrecision(18, 2);
 
-            // Configure optional relationship to Instructor using a shadow FK
+            // Configure optional relationship to Instructor using the explicit FK property and inverse navigation
             builder.HasOne(d => d.Instructor)
-                   .WithMany()
-                   .HasForeignKey("InstructorId")
+                   .WithMany(i => i.Departments)
+                   .HasForeignKey(d => d.InstructorId)
                    .OnDelete(DeleteBehavior.SetNull);
         }
     }
