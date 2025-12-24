@@ -19,10 +19,10 @@ namespace VertexCore.Infrastructure.Configuration.EntityConfigurations
             builder.Property(c => c.Credits)
                    .IsRequired();
 
-            // Configure optional relationship to Department using a shadow FK
+            // Configure explicit relationship to Department using the existing FK property
             builder.HasOne(c => c.Department)
-                   .WithMany()
-                   .HasForeignKey("DepartmentId")
+                   .WithMany(d => d.Courses)               // specify inverse navigation
+                   .HasForeignKey(c => c.DepartmentId)    // map to the existing FK property
                    .OnDelete(DeleteBehavior.SetNull);
         }
     }

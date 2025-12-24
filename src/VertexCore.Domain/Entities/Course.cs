@@ -15,7 +15,5 @@ namespace VertexCore.Domain.Entities
         // Navigation property
         public Department? Department { get; set; }
 
-        // Sections for this course
-        public ICollection<Section>? Sections { get; set; }
     }
 }
