@@ -382,13 +382,13 @@ namespace VertexCore.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CourseId")
+                    b.Property<Guid>("CourseId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("InstructorId")
+                    b.Property<Guid>("InstructorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("MeetingDay")
@@ -429,7 +429,9 @@ namespace VertexCore.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("99999999-9999-9999-9999-999999999999"),
+                            CourseId = new Guid("55555555-5555-5555-5555-555555555555"),
                             CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstructorId = new Guid("33333333-3333-3333-3333-333333333333"),
                             MeetingDay = new DateTime(2025, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MeetingTime = new TimeSpan(0, 9, 0, 0, 0),
                             RoomNumber = "101",
@@ -440,7 +442,9 @@ namespace VertexCore.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
+                            CourseId = new Guid("66666666-6666-6666-6666-666666666666"),
                             CreatedAt = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstructorId = new Guid("44444444-4444-4444-4444-444444444444"),
                             MeetingDay = new DateTime(2025, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MeetingTime = new TimeSpan(0, 11, 0, 0, 0),
                             RoomNumber = "202",
@@ -671,7 +675,7 @@ namespace VertexCore.Infrastructure.Migrations
             modelBuilder.Entity("VertexCore.Domain.Entities.Course", b =>
                 {
                     b.HasOne("VertexCore.Domain.Entities.Department", "Department")
-                        .WithMany()
+                        .WithMany("Courses")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -681,7 +685,7 @@ namespace VertexCore.Infrastructure.Migrations
             modelBuilder.Entity("VertexCore.Domain.Entities.Department", b =>
                 {
                     b.HasOne("VertexCore.Domain.Entities.Instructor", "Instructor")
-                        .WithMany()
+                        .WithMany("Departments")
                         .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.SetNull);
 
@@ -690,19 +694,33 @@ namespace VertexCore.Infrastructure.Migrations
 
             modelBuilder.Entity("VertexCore.Domain.Entities.Section", b =>
                 {
-                    b.HasOne("VertexCore.Domain.Entities.Course", "Name")
+                    b.HasOne("VertexCore.Domain.Entities.Course", "Course")
                         .WithMany()
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("VertexCore.Domain.Entities.Instructor", "Instructor")
-                        .WithMany()
+                        .WithMany("Sections")
                         .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
 
                     b.Navigation("Instructor");
+                });
 
-                    b.Navigation("Name");
+            modelBuilder.Entity("VertexCore.Domain.Entities.Department", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("VertexCore.Domain.Entities.Instructor", b =>
+                {
+                    b.Navigation("Departments");
+
+                    b.Navigation("Sections");
                 });
 #pragma warning restore 612, 618
         }
