@@ -19,16 +19,5 @@ namespace VertexCore.Domain.Entities
         // Time of the meeting
         public TimeSpan MeetingTime { get; set; }
 
-        // Foreign key to Course
-        public Guid? CourseId { get; set; }
-        // Navigation property to Course (Optional)
-        public Course? Course { get; set; }
-
-        // Foreign key to Instructor (optional)
-        public Guid? InstructorId { get; set; }
-        public Instructor? Instructor { get; set; }
-
-        // Students enrolled in this section (many-to-many)
-        public ICollection<Student>? Students { get; set; }
     }
 }

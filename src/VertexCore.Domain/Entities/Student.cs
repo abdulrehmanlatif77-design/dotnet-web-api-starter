@@ -24,12 +24,6 @@ namespace VertexCore.Domain.Entities
 
         public decimal GPA { get; set; }
 
-        // Department/major
-        public Guid? DepartmentId { get; set; }
-        public Department? Department { get; set; }
-
-        // Sections the student is enrolled in (many-to-many)
-        public ICollection<Section>? Sections { get; set; }
     }
 
     /// <summary>
